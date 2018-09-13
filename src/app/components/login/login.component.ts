@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { LoginService } from '../../services/login.service';
+import { User } from '../../models/User.model';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +18,7 @@ export class LoginComponent implements OnInit {
   password: string
   returnUrl: string
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private auth: LoginService) { }
 
   ngOnInit() {
     this.email = ""
@@ -31,7 +34,15 @@ export class LoginComponent implements OnInit {
 
   checkLogin(){
     if(this.loginForm.value.email != null){
-      this.router.navigate(['/tienda']);
+      let user = new User();
+      user.username = this.loginForm.value.email;
+      user.password = this.loginForm.value.password;
+      this.auth.validateLogin(user).subscribe(result => {
+        console.log('result is ', result);
+        this.router.navigate(['/tienda']);
+      }, error => {
+        console.log('error is ', error);
+      });
     }
   }
 
