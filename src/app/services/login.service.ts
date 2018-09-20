@@ -6,9 +6,9 @@ import { User } from '../models/User.model';
 @Injectable()
 export class LoginService {
     constructor(private http: HttpClient){}
-    validateLogin(user: User): Observable<User>{
-        return this.http.post<User>('/api/user/login',{
-            username : user.username,
+    validateLogin(user: User): Observable<Object>{
+        return this.http.post<Object>('http://localhost:3000/login',{
+            email : user.username,
             password : user.password
         })
     }

@@ -12,66 +12,29 @@
               <span class="pull-right ml-auto">
                 <div class="form-group ">
                   <label for="descripcion">¿Qué estas buscando?</label>
-                  <input type="text" id="descripcion" placeholder="Buscar producto" class="form-control input-filtro" />
+                  <input type="text" [(ngModel)]="articuloFilter.nombre" [ngModelOptions]="{standalone: true}"  placeholder="Buscar producto" class="form-control input-filtro" />
                   <span class="error">Introduzca la información a buscar</span>
                 </div>
               </span>
             </div>
           </div>
           <div class="row py-1">
-            <div class="col-sm-4">
-              <div class="card">
+            <div class="col-sm-4" *ngFor="let item of allArticle | filterBy: articuloFilter">
+              <div class="card box">
                 <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row py-1">
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <div class="img">
+                    <img src="assets/img/{{item.img}}" alt="" class="img-fluid img-thumbnail">
+                    <h5 class="card-title">{{item.nombre}}</h5>
+                    <div>
+                      <p>Precio: ${{item.precio}}</p>
+                      <p>Unidades disponibles: {{item.stock}}</p>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <a class="btn btn-primary" (click)="showMore(item);" >Ver mas</a>
+                    <button class="btn btn-default ml-5 mr-1">Añadir</button>
+                    <input type="number" min="0" max="50" class="form-control text-right" width="10">
+                  </div>
                 </div>
               </div>
             </div>

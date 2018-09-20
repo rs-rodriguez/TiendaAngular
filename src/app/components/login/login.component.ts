@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { LoginService } from '../../services/login.service';
 import { User } from '../../models/User.model';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-login',
@@ -37,10 +38,16 @@ export class LoginComponent implements OnInit {
       let user = new User();
       user.username = this.loginForm.value.email;
       user.password = this.loginForm.value.password;
-      this.auth.validateLogin(user).subscribe(result => {
-        console.log('result is ', result);
-        this.router.navigate(['/tienda']);
-      }, error => {
+      //this.router.navigate(['/tienda']);
+      this.auth.validateLogin(user).subscribe(
+        dataS => {
+        let mess = dataS['loginMsg'];
+        console.log('result is ', mess);
+        if(mess == "OK"){
+          this.router.navigate(['/tienda']);
+        }
+      }, 
+      error => {
         console.log('error is ', error);
       });
     }

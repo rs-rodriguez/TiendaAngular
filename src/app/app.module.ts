@@ -11,8 +11,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RouterModule, Routes } from "@angular/router";
 import { DetalleProductoComponent } from './components/tienda/detalle-producto/detalle-producto.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 import { LoginService } from './services/login.service';
+import { ArticulosService } from './services/articulos.service';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -38,9 +40,13 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FilterPipeModule
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService, 
+    ArticulosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
