@@ -7,8 +7,20 @@
         </h2>
         <div>
           <ul class="producto list-group col-sm-6 col-xs-12 no-padding animated fadeIn slow">
-            <li class="list-group-item flex col-xs-12 no-padding" *ngFor="let item of listaCarrito" [ngStyle]="{background:'#ededed'}">
+            <li class="list-group-item flex col-xs-12 no-padding" *ngFor="let caritem of carItems" [ngStyle]="{background:'#ededed'}">
               <div class="col-xs-12 no-padding">
+                  <div class="itemdata">
+                      <div class="isq">
+                        <img src="assets/img/{{caritem.item.img}}">
+                      </div>
+                      <div class="der">
+                        <p>{{caritem.item.nombre}}</p>
+                        <p>Unidades: {{caritem.cantidad}}</p>
+                      </div>
+                    </div>
+                    <div class="subtotal">
+                      <p>Subtotal: ${{caritem.item.precio*caritem.cantidad}}</p>
+                    </div>
               </div>
             </li>
           </ul>
@@ -20,7 +32,7 @@
               <h2 class="text-right"> Total a pagar:</h2>
               <h3 class="text-right">{{ 12 | currency : 'USD' : 1-0-2}}</h3>
               <p class="pull-right">
-                <button class="btn btn-success " type="button" (click)="pagarCarrito()"><i class="material-icons">credit_card</i>
+                <button class="btn btn-success " type="button" (click)="pagar()"><i class="material-icons">credit_card</i>
                   Pagar</button>
               </p>
             </div>

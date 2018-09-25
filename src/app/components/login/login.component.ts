@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
       let user = new User();
       user.username = this.loginForm.value.email;
       user.password = this.loginForm.value.password;
-      //this.router.navigate(['/tienda']);
       this.auth.validateLogin(user).subscribe(
         dataS => {
         let mess = dataS['loginMsg'];

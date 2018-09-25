@@ -12,6 +12,7 @@ export class TiendaComponent implements OnInit {
   private articuloFilter: any = {nombre: ''};
   private allArticle: Articulo[];
   private articulos: ArticulosService;
+  cantidadAdd;
 
   constructor(private articles: ArticulosService, private router: Router, private route: ActivatedRoute) {
     this.articulos = articles;
@@ -24,8 +25,14 @@ export class TiendaComponent implements OnInit {
   }
 
   showMore(articulo: Articulo) {
-    //this.carShopingService.setItem(articuloSel);
+    this.articulos.setItem(articulo);
     this.router.navigate(['tienda/detalle-producto/:id']);
   }
 
+  addCanasta(articuloSel) {
+    if(!isNaN(this.cantidadAdd)) {
+      this.articulos.setItem(articuloSel);
+      this.articulos.agregarItemShoping(this.cantidadAdd);
+    }
+  }
 }
