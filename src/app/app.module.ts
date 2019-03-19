@@ -44,7 +44,7 @@ const routes: Routes = [
     FilterPipeModule
   ],
   providers: [
-    LoginService, 
+    LoginService,
     ArticulosService
   ],
   bootstrap: [AppComponent]

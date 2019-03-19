@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticulosService } from '../../services/articulos.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-menubar',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenubarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute, private articles: ArticulosService) { }
 
   ngOnInit() {
+  }
+
+  getShouCounter() {
+   return this.articles.getCantidad();
+  }
+
+  logout() {
+    sessionStorage.removeItem('LOGIN');
+    this.router.navigate(['/']);
   }
 
 }

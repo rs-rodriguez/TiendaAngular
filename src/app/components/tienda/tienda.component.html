@@ -33,7 +33,7 @@
                   <div class="input-group">
                     <a class="btn btn-primary" (click)="showMore(item);" >Ver mas</a>
                     <button class="btn btn-default ml-5 mr-1" (click)="addCanasta(item);">Añadir</button>
-                    <input type="number" name="cantidad" [(ngModel)]="cantidadAdd" value="1" min="1" max="{{item.stock}}" class="form-control text-right" width="10">
+                    <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.cantidad" value="1" min="1" max="{{item.stock}}" class="form-control text-right" width="10">
                   </div>
                 </div>
               </div>

@@ -13,28 +13,28 @@ import { debug } from 'util';
 })
 export class LoginComponent implements OnInit {
 
-  message: string
-  loginForm: FormGroup
-  email: string
-  password: string
-  returnUrl: string
+  message: string;
+  loginForm: FormGroup;
+  email: string;
+  password: string;
+  returnUrl: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private auth: LoginService) { }
 
   ngOnInit() {
-    this.email = ""
-    this.password = ""
+    this.email = '';
+    this.password = '';
     this.loginForm = new FormGroup(
       {
         'email': new FormControl(),
-        'password': new FormControl() 
+        'password': new FormControl()
       }
     )
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  checkLogin(){
-    if(this.loginForm.value.email != null){
+  checkLogin() {
+    if (this.loginForm.value.email != null) {
       let user = new User();
       user.username = this.loginForm.value.email;
       user.password = this.loginForm.value.password;
@@ -42,11 +42,12 @@ export class LoginComponent implements OnInit {
         dataS => {
         let mess = dataS['loginMsg'];
         console.log('result is ', mess);
-        if(mess == "OK"){
+        if (mess === 'OK') {
+          sessionStorage.setItem('LOGIN', 'OK');
           this.router.navigate(['/tienda']);
         }
-      }, 
-      error => {
+      },
+          error => {
         console.log('error is ', error);
       });
     }

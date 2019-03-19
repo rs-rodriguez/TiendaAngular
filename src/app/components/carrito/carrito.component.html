@@ -26,11 +26,11 @@
           </ul>
           <div class="col-sm-6 col-xs-12 animated fadeIn slow">
             <div>
-              <h2 class="text-right"><button class="btn btn-danger btn-sm" type="button" (click)="this.vaciarCarrito()"><i
+              <h2 class="text-right"><button class="btn btn-danger btn-sm" type="button" (click)="vaciarCarrito()"><i
                     class="material-icons" [ngStyle]="{'line-height' : '14px', 'font-size': '17px', 'position' : 'relative', 'top': '3px'}">delete</i>
                   Vaciar Carrito</button></h2>
               <h2 class="text-right"> Total a pagar:</h2>
-              <h3 class="text-right">{{ 12 | currency : 'USD' : 1-0-2}}</h3>
+              <h3 class="text-right">{{ total | currency : 'USD' }}</h3>
               <p class="pull-right">
                 <button class="btn btn-success " type="button" (click)="pagar()"><i class="material-icons">credit_card</i>
                   Pagar</button>
